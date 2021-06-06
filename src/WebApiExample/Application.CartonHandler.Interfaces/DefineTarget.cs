@@ -7,14 +7,14 @@ namespace WebApiExample.Application
 {
     public partial interface ICartonHandler
     {
-        Task<ItemReceivementStatus> AddItems(IItemsSent items);
+        Task<TargetDefinitionStatus> DefineTarget(TargetDefined target);
     }
 
-    public interface IItemsSent
+    public record TargetDefined
     {
     }
 
-    public enum ItemReceivementStatus
+    public enum TargetDefinitionStatus
     {
         Ok,
     }

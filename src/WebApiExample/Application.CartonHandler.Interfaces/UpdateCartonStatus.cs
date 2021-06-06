@@ -7,14 +7,14 @@ namespace WebApiExample.Application
 {
     public partial interface ICartonHandler
     {
-        Task<CartonCreatedStatus> CreateCarton(ICartonCreated carton);
+        Task<CartonStatusState> UpdateCartonState(CartonStateUpdated cartonState);
     }
 
-    public interface ICartonCreated
+    public record CartonStateUpdated
     {
     }
 
-    public enum CartonCreatedStatus
+    public enum CartonStatusState
     {
         Ok,
     }

@@ -7,15 +7,19 @@ namespace WebApiExample.Application
 {
     public partial interface ICartonHandler
     {
-        Task<TargetDefinitionStatus> DefineTarget(ITargetDefined target);
+        Task<(CartonsStatus result, Cartons cartons)> GetCartons(GetCartonsQuery query);
     }
 
-    public interface ITargetDefined
+    public record GetCartonsQuery
     {
     }
 
-    public enum TargetDefinitionStatus
+    public enum CartonsStatus
     {
         Ok,
+    }
+
+    public record Cartons
+    {
     }
 }

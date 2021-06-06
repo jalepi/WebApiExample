@@ -7,19 +7,15 @@ namespace WebApiExample.Application
 {
     public partial interface ICartonHandler
     {
-        Task<(CartonsStatus result, ICartons carton)> GetCartons(IGetCartonsQuery query);
+        Task<CartonCreatedStatus> CreateCarton(CartonCreated carton);
     }
 
-    public interface IGetCartonsQuery
+    public record CartonCreated
     {
     }
 
-    public enum CartonsStatus
+    public enum CartonCreatedStatus
     {
         Ok,
-    }
-
-    public interface ICartons
-    {
     }
 }

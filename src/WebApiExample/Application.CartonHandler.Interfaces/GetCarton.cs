@@ -7,10 +7,10 @@ namespace WebApiExample.Application
 {
     public partial interface ICartonHandler
     {
-        Task<(CartonStatus result, ICartonDetails carton)> GetCarton(IGetCartonQuery query);
+        Task<(CartonStatus result, CartonDetails carton)> GetCarton(GetCartonQuery query);
     }
 
-    public interface IGetCartonQuery
+    public record GetCartonQuery
     {
     }
 
@@ -19,7 +19,7 @@ namespace WebApiExample.Application
 
     }
 
-    public interface ICartonDetails
+    public record CartonDetails
     {
     }
 }
