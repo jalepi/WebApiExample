@@ -10,12 +10,12 @@ namespace WebApiExample.Application
     public class BaseTests
     {
         protected readonly MockRepository moq = new MockRepository(MockBehavior.Strict);
-        protected ICartonHandler Subject { get; init; }
-        protected Mock<ICartonHandler> Fake { get; init; }
+        protected Handler Subject { get; init; }
+        protected Mock<Handler> Fake { get; init; }
 
         public BaseTests()
         {
-            Fake = moq.Create<ICartonHandler>();
+            Fake = moq.Create<Handler>();
             Subject = Fake.Object;
         }
     }

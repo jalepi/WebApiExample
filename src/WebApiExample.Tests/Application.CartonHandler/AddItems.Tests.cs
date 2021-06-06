@@ -1,7 +1,5 @@
 ﻿using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -11,10 +9,11 @@ namespace WebApiExample.Application.CartonHandler
     {
         public AddItemsTests() : base()
         {
-            Fake = moq.Create<ICartonHandler>();
-            Fake.Setup(o => o.AddItems(
-                    It.IsAny<ItemsSent>()))
-                .ReturnsAsync(ItemReceivementStatus.Ok);
+            Fake = moq.Create<Handler>();
+            Fake.Setup(o => o.Handle(
+                    It.IsAny<AddItemsCommand>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(AddItemsStatus.Ok);
 
             Subject = Fake.Object;
         }
@@ -24,13 +23,13 @@ namespace WebApiExample.Application.CartonHandler
         {
             // arrange
 
-            var items = new ItemsSent { };
+            var items = new AddItemsCommand { };
 
             // act
-            var result = await Subject.AddItems(items);
+            var result = await Subject.Handle(items, default);
 
             // assert
-            Assert.Equal(ItemReceivementStatus.Ok, result);
+            Assert.Equal(AddItemsStatus.Ok, result);
         }
     }
 }

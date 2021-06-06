@@ -2,7 +2,7 @@
 
 namespace WebApiExample.Application.DataObjecs
 {
-    public class DoesCartonExist : IBelongsToCarton
+    public record InsertCarton : IBelongsToCarton
     {
         public string OrganizationId { get; init; }
         public string TenantId { get; init; }

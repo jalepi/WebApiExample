@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -14,19 +15,20 @@ namespace WebApiExample.Application.CartonHandler
         {
             // arrange
             var input = Mock.Of<GetCartonsQuery>();
-            var output = (CartonsStatus.Ok, Mock.Of<Cartons>());
+            var output = Domain.ResultOf.Create(GetCartonsStatus.Ok, Mock.Of<Cartons>());
 
-            Fake.Setup(o => o.GetCartons(
-                    It.IsAny<GetCartonsQuery>()))
+            Fake.Setup(o => o.Handle(
+                    It.IsAny<GetCartonsQuery>(),
+                    It.IsAny<CancellationToken>()))
                 .ReturnsAsync(output);
 
 
             // act
-            var result = await Subject.GetCartons(input);
+            var result = await Subject.Handle(input, default);
 
             // assert
-            Assert.Equal(CartonsStatus.Ok, result.result);
-            Assert.NotNull(result.cartons);
+            Assert.Equal(GetCartonsStatus.Ok, result.Status);
+            Assert.NotNull(result.Content);
         }
     }
 }

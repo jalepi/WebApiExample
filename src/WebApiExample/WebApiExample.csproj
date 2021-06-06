@@ -9,11 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application.CartonCommands\" />
+    <None Include="Application\IReader.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Application\Application.IReader.cs" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
 
